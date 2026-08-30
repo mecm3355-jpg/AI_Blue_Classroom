@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/AI_Champion_Blue_Classroom_Master.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/AI_Champion_Blue_Classroom_Master.html"
+    }
+  ]
+}
