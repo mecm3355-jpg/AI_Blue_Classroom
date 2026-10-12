@@ -1,0 +1,30 @@
+# Local source materials are distributed separately, not published with the site.
+/연습/
+/실전/
+**/학습출력/
+
+# Local tools, credentials, caches and rollback copies.
+.env
+.env.*
+!.env.example
+.vscode/
+.codex/
+.agents/
+.aws/
+.mobile-test-tools/
+.github-update-repo/
+.reverted-*/
+.cleanup-*/
+.lesson-check-*/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+
+# Generated verification evidence is not part of the published application.
+audit-*.png
+audit-*-results*.json
+audit-source-*.json
+verified-artifacts/
+PREDEPLOY_AUDIT_*.txt
