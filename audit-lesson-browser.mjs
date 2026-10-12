@@ -39,6 +39,15 @@ try{
      document.querySelectorAll('.topic-btn')[i].click();
      const script=collector.getSubjectScript(data.topics[i].id);
      const failures=[];
+     const timeline=document.querySelector('#video-progress-bg');
+     const formatTime=seconds=>Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+     const expectedTotal=formatTime(script.duration);
+     for(const [key,seconds] of [['Home',0],['End',script.duration],['Home',0]]){
+       timeline.dispatchEvent(new KeyboardEvent('keydown',{key,bubbles:true}));
+       if(document.querySelector('#video-time-display').textContent!==formatTime(seconds)+' / '+expectedTotal)failures.push('duration display '+key);
+       if(Number(timeline.getAttribute('aria-valuemax'))!==script.duration)failures.push('duration maximum');
+       if(timeline.getAttribute('aria-valuetext')!==Math.floor(seconds/60)+'분 '+(seconds%60)+'초 / '+Math.floor(script.duration/60)+'분 '+(script.duration%60)+'초')failures.push('accessible duration '+key);
+     }
      for(const chapter of script.chapters){
        if(chapter.resultVersion!==LESSON_RESULT_META.resultVersion || !chapter.resultId)failures.push('result provenance');
        const bar=document.querySelector('#video-progress-bg'),r=bar.getBoundingClientRect();

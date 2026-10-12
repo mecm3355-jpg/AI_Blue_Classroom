@@ -9670,7 +9670,7 @@ function startApplication() {
     if (videoProgressBg) {
       videoProgressBg.setAttribute('aria-valuemax', String(totalVideoSeconds));
       videoProgressBg.setAttribute('aria-valuenow', String(Math.floor(videoSeconds)));
-      videoProgressBg.setAttribute('aria-valuetext', `${Math.floor(videoSeconds / 60)}분 ${Math.floor(videoSeconds % 60)}초 / ${Math.floor(totalVideoSeconds / 60)}분`);
+      videoProgressBg.setAttribute('aria-valuetext', `${Math.floor(videoSeconds / 60)}분 ${Math.floor(videoSeconds % 60)}초 / ${Math.floor(totalVideoSeconds / 60)}분 ${Math.floor(totalVideoSeconds % 60)}초`);
     }
 
 
@@ -9691,7 +9691,8 @@ function startApplication() {
 
 
 
-    const timeStr = `${mins}:${secs.toString().padStart(2, '0')} / ${totalMins}:00`;
+    const totalSecs = Math.floor(totalVideoSeconds % 60);
+    const timeStr = `${mins}:${secs.toString().padStart(2, '0')} / ${totalMins}:${totalSecs.toString().padStart(2, '0')}`;
 
 
 
